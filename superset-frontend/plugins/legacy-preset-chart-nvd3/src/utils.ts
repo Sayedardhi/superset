@@ -152,7 +152,7 @@ export function generateMultiLineTooltipContent(d, xFormatter, yFormatters) {
 
   d.series.forEach((series, i) => {
     const yFormatter = yFormatters[i];
-    const key = getFormattedKey(series.key, false);
+    const key = getFormattedKey(series.key, true);
     tooltip +=
       "<tr><td class='legend-color-guide'>" +
       `<div style="background-color: ${series.color};"></div></td>` +
@@ -162,7 +162,7 @@ export function generateMultiLineTooltipContent(d, xFormatter, yFormatters) {
 
   tooltip += '</tbody></table>';
 
-  return tooltip;
+  return dompurify.sanitize(tooltip);
 }
 
 export function generateTimePivotTooltip(d, xFormatter, yFormatter) {
