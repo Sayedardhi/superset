@@ -26,6 +26,7 @@ import {
   computeYDomain,
   getTimeOrNumberFormatter,
   formatLabel,
+  generateAnnotationTooltipContent,
 } from '../src/utils';
 
 const DATA = [
@@ -120,6 +121,48 @@ describe('nvd3/utils', () => {
       SMART_DATE_ID,
       createSmartDateFormatter(),
     );
+  });
+
+  describe('generateAnnotationTooltipContent()', () => {
+    const layer = {
+      name: 'My annotations',
+      titleColumn: 'title',
+      descriptionColumns: ['description'],
+    };
+
+    test('renders the annotation title and description', () => {
+      const html = generateAnnotationTooltipContent(layer, {
+        title: 'Release',
+        description: 'Shipped v1',
+      });
+      expect(html).toContain('Release - My annotations');
+      expect(html).toContain('Shipped v1');
+    });
+
+    test('falls back to the layer name when the title column is empty', () => {
+      const html = generateAnnotationTooltipContent(layer, {
+        title: '',
+        description: 'Shipped v1',
+      });
+      expect(html).toContain('My annotations');
+    });
+
+    test('strips an event-handler payload from the title column', () => {
+      const html = generateAnnotationTooltipContent(layer, {
+        title: '<img src=x onerror="alert(1)">',
+        description: 'ok',
+      });
+      expect(html).not.toContain('onerror');
+      expect(html).not.toContain('alert(1)');
+    });
+
+    test('strips a script payload from a description column', () => {
+      const html = generateAnnotationTooltipContent(layer, {
+        title: 'Release',
+        description: '<script>alert(document.cookie)</script>',
+      });
+      expect(html).not.toContain('<script>');
+    });
   });
 
   describe('getTimeOrNumberFormatter(format)', () => {
