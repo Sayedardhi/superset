@@ -49,6 +49,7 @@ from superset.utils.core import (
     QueryObjectFilterClause,
     QuerySource,
     remove_extra_adhoc_filters,
+    sanitize_cookie_token,
     sanitize_svg_content,
     sanitize_url,
 )
@@ -1730,3 +1731,33 @@ def test_markdown_with_markup_wrap() -> None:
 
     assert isinstance(result, Markup)
     assert "<strong>bold</strong>" in str(result)
+
+
+@pytest.mark.parametrize(
+    "token",
+    [
+        "abc123",
+        "A_b-C_9",
+        "x" * 128,
+    ],
+)
+def test_sanitize_cookie_token_accepts_valid(token: str) -> None:
+    assert sanitize_cookie_token(token) == token
+
+
+@pytest.mark.parametrize(
+    "token",
+    [
+        None,
+        "",
+        "x" * 129,
+        "has space",
+        "semi;colon",
+        "new\nline",
+        "equals=sign",
+        "comma,value",
+        "unicode✓",
+    ],
+)
+def test_sanitize_cookie_token_rejects_invalid(token: Optional[str]) -> None:
+    assert sanitize_cookie_token(token) is None
