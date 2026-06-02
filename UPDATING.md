@@ -24,6 +24,29 @@ assists people when migrating to a new version.
 
 ## Next
 
+### Selectable encryption engine for app-encrypted fields (AES-GCM)
+
+App-encrypted fields (database passwords, SSH tunnel credentials, OAuth tokens, etc.) can now use authenticated **AES-GCM** encryption instead of the historical unauthenticated **AES-CBC**. A new config selects the engine for the default adapter:
+
+```python
+# "aes" (AES-CBC, historical default) | "aes-gcm" (authenticated, recommended for new installs)
+SQLALCHEMY_ENCRYPTED_FIELD_ENGINE = "aes"
+```
+
+**No action required / no behavior change:** the default remains `"aes"`, so existing installs are unaffected.
+
+**Opting in on an existing install:** flipping the engine on a populated database without re-encrypting first will make stored secrets undecryptable, because the two ciphertext formats are not compatible. A migrator is provided. Recommended runbook:
+
+1. Take a metadata-DB backup.
+2. Re-encrypt existing secrets into the new engine (the `SECRET_KEY` is unchanged):
+   ```bash
+   superset re-encrypt-secrets --engine aes-gcm
+   ```
+3. Set `SQLALCHEMY_ENCRYPTED_FIELD_ENGINE = "aes-gcm"` in your config.
+4. Restart Superset.
+
+The migration is transactional (all-or-nothing) and idempotent — it can be safely re-run or resumed. Note that AES-GCM, unlike AES-CBC, does not support querying directly over encrypted columns; audit any code that filters on an encrypted column before switching. See the SIP at `docs/sip/authenticated-encryption-at-rest.md` for details.
+
 ### Granular Export Controls
 
 A new feature flag `GRANULAR_EXPORT_CONTROLS` introduces three fine-grained permissions that replace the legacy `can_csv` permission:
