@@ -10765,8 +10765,7 @@ msgstr "Registrovať"
 msgid "Registration date"
 msgstr "Dátum registrácia"
 
-msgid "Registration hash"
-msgstr "Hash registrácia"
+
 
 msgid "Registration successful"
 msgstr "Registrácia úspešná"

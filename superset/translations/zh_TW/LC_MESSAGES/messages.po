@@ -10813,8 +10813,6 @@ msgstr "預過濾"
 msgid "Registration date"
 msgstr "開始時間"
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""

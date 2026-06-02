@@ -9964,8 +9964,6 @@ msgstr "登録"
 msgid "Registration date"
 msgstr "登録日"
 
-msgid "Registration hash"
-msgstr "登録ハッシュ"
 
 msgid "Registration successful"
 msgstr "登録が完了しました"

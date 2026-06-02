@@ -10901,8 +10901,6 @@ msgstr "Vooraf-filter"
 msgid "Registration date"
 msgstr "Start datum"
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""

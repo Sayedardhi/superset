@@ -10972,8 +10972,6 @@ msgstr "S'enregister"
 msgid "Registration date"
 msgstr "Source de l'annotation"
 
-msgid "Registration hash"
-msgstr "Hachage d'enregistrement"
 
 #, fuzzy
 msgid "Registration successful"

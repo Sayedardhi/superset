@@ -10788,8 +10788,6 @@ msgstr "Pre-filtre"
 msgid "Registration date"
 msgstr "Data d'inici"
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""

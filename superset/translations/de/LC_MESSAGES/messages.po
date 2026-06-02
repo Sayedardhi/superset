@@ -10984,8 +10984,6 @@ msgstr "Vorfilter"
 msgid "Registration date"
 msgstr "Startdatum"
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""

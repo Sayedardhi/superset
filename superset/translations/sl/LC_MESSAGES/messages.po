@@ -10818,8 +10818,6 @@ msgstr "Predfilter"
 msgid "Registration date"
 msgstr "Začetni datum"
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""

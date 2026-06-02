@@ -10476,8 +10476,6 @@ msgstr "Реєстрація"
 msgid "Registration date"
 msgstr "Дата реєстрації"
 
-msgid "Registration hash"
-msgstr "Хеш реєстрації"
 
 msgid "Registration successful"
 msgstr "Успішна реєстрація"

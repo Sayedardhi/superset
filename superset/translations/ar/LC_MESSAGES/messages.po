@@ -10876,8 +10876,6 @@ msgstr "التصفية المسبقة"
 msgid "Registration date"
 msgstr "تاريخ البداية"
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""

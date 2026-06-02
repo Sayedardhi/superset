@@ -9786,8 +9786,6 @@ msgstr ""
 msgid "Registration date"
 msgstr ""
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""

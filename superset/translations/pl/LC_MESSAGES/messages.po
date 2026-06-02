@@ -11215,8 +11215,6 @@ msgstr "Filtr wstępny"
 msgid "Registration date"
 msgstr "Data rozpoczęcia"
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""

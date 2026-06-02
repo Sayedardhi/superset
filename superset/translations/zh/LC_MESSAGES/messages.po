@@ -10803,8 +10803,6 @@ msgstr "预过滤"
 msgid "Registration date"
 msgstr "开始时间"
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""

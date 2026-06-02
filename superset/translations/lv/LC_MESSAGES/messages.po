@@ -10520,8 +10520,6 @@ msgstr "Reģistrēties"
 msgid "Registration date"
 msgstr "Reģistrācijas datums"
 
-msgid "Registration hash"
-msgstr "Reģistrācijas hash"
 
 #, fuzzy
 msgid "Registration successful"

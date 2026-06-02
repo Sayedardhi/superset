@@ -10504,8 +10504,6 @@ msgstr "Регистрация"
 msgid "Registration date"
 msgstr "Дата регистрации"
 
-msgid "Registration hash"
-msgstr "Хеш регистрации"
 
 msgid "Registration successful"
 msgstr "Регистрация выполнена успешно"

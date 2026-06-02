@@ -10707,8 +10707,6 @@ msgstr "Cerca / Filtra"
 msgid "Registration date"
 msgstr "Ultima Modifica"
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""

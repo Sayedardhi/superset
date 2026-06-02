@@ -11074,8 +11074,6 @@ msgstr "Mais filtros"
 msgid "Registration date"
 msgstr "Data de início"
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""

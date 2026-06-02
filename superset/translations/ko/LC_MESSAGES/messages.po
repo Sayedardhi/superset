@@ -10611,8 +10611,6 @@ msgstr "필터"
 msgid "Registration date"
 msgstr "시작 시간"
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""

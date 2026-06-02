@@ -10703,8 +10703,6 @@ msgstr "Tātari-i-mua"
 msgid "Registration date"
 msgstr "Rā tīmata"
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""

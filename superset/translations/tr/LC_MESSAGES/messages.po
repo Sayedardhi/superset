@@ -10184,8 +10184,6 @@ msgstr ""
 msgid "Registration date"
 msgstr "Başlangıç tarihi"
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""

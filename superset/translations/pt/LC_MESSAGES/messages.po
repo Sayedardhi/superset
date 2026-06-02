@@ -10854,8 +10854,6 @@ msgstr "Filtro de data"
 msgid "Registration date"
 msgstr "Início"
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""

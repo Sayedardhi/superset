@@ -10753,8 +10753,6 @@ msgstr "پیش‌فیلتر"
 msgid "Registration date"
 msgstr "تاریخ شروع"
 
-msgid "Registration hash"
-msgstr ""
 
 msgid "Registration successful"
 msgstr ""
