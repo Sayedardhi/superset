@@ -24,6 +24,18 @@ assists people when migrating to a new version.
 
 ## Next
 
+### New `EXPOSE_VERSION_INFO` config to control `/version` detail
+
+A new `EXPOSE_VERSION_INFO` config option controls how much detail the unauthenticated `/version` endpoint returns. It defaults to `True`, which preserves the existing behavior: the endpoint returns the full version metadata, including the Git SHA, full SHA, build number, and branch name when available.
+
+Operators who prefer not to expose build-specific details to unauthenticated callers can set the following in `superset_config.py`:
+
+```python
+EXPOSE_VERSION_INFO = False
+```
+
+When disabled, `/version` returns only the human-readable `version_string` and omits the Git SHA, full SHA, build number, and branch name. Because the default is `True`, this change is non-breaking for existing deployments.
+
 ### Dataset import validates catalog against the target connection
 
 Importing a dataset now validates the `catalog` field against the target database connection. When the connection has multi-catalog disabled (`allow_multi_catalog` off) and the dataset's catalog is not the connection's default catalog, the import fails instead of silently persisting the non-default catalog. This matches the validation already enforced on the dataset update path and prevents imported datasets from querying an unintended database.
