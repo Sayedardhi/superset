@@ -4,16 +4,23 @@ Verify the Superset **frontend** for visual/runtime regressions on a PR. Pick th
 **lightest boot path** that can render what the PR changed — most PRs do **not**
 need the full backend.
 
-## Environment (once)
+## Environment (pre-warmed via org snapshot)
 
-- Node **22.x** (repo requires `^22.22.0`), npm `^10.8.1`.
-- `superset-frontend` is an npm **workspaces** monorepo. Install at its root:
+The org snapshot already has this repo cloned at **`~/repos/superset`** with
+`superset-frontend` dependencies installed (Node 22). Reuse it — do NOT clone
+fresh or run a cold `npm ci`:
 
 ```bash
-export NODE_OPTIONS=--max-old-space-size=8192   # install/build is memory heavy
+cd ~/repos/superset
+git fetch origin && git checkout <PR head ref>   # check out the PR branch here
 cd superset-frontend
-npm ci                                          # large + slow — be patient, don't cancel
+# deps are already installed from the snapshot; only run `npm ci` if
+# package-lock.json changed in the diff (otherwise skip — it's slow).
+export NODE_OPTIONS=--max-old-space-size=8192
 ```
+
+If `~/repos/superset` is somehow absent (no snapshot), fall back to a shallow
+clone + `npm ci`, but prefer the pre-installed copy for speed.
 
 ## Path A — Storybook (PREFERRED — no backend, fast, reliable)
 
