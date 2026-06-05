@@ -394,6 +394,7 @@
     "npm": "^10.8.1"
   },
   "overrides": {
+    "moment": ">=2.29.4",
     "uuid": "$uuid",
     "core-js": "^3.38.1",
     "puppeteer": "^22.4.1",
