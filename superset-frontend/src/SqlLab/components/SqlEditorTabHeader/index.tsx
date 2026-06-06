@@ -16,12 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { useMemo, FC } from 'react';
+import { useMemo, useState, useCallback, ChangeEvent, FC } from 'react';
 
 import { bindActionCreators } from 'redux';
 import { useSelector, shallowEqual } from 'react-redux';
 import { useAppDispatch } from 'src/views/store';
-import { MenuDotsDropdown } from '@superset-ui/core/components';
+import { MenuDotsDropdown, Modal, Input } from '@superset-ui/core/components';
 import { Menu, MenuItemType } from '@superset-ui/core/components/Menu';
 import { t } from '@apache-superset/core/translation';
 import { QueryState } from '@superset-ui/core';
@@ -107,14 +107,31 @@ const SqlEditorTabHeader: FC<Props> = ({ queryEditor }) => {
     [dispatch],
   );
 
-  function renameTab() {
-    // TODO: Replace native prompt with a proper modal dialog
-    // eslint-disable-next-line no-alert
-    const newTitle = prompt(t('Enter a new title for the tab'));
-    if (newTitle) {
-      actions.queryEditorSetTitle(qe, newTitle, qe.id);
+  const [showRenameModal, setShowRenameModal] = useState(false);
+  const [newTabName, setNewTabName] = useState('');
+
+  const openRenameModal = useCallback(() => {
+    setNewTabName(qe.name);
+    setShowRenameModal(true);
+  }, [qe.name]);
+
+  const closeRenameModal = useCallback(() => {
+    setShowRenameModal(false);
+  }, []);
+
+  const handleRename = useCallback(() => {
+    if (newTabName.trim()) {
+      actions.queryEditorSetTitle(qe, newTabName.trim(), qe.id);
     }
-  }
+    setShowRenameModal(false);
+  }, [actions, qe, newTabName]);
+
+  const handleTabNameChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setNewTabName(e.target.value);
+    },
+    [],
+  );
   const getStatusColor = (state: QueryState, theme: SupersetTheme): string => {
     const statusColors: Record<QueryState, string> = {
       [QueryState.Running]: theme.colorInfo,
@@ -158,7 +175,7 @@ const SqlEditorTabHeader: FC<Props> = ({ queryEditor }) => {
               } as MenuItemType,
               {
                 key: '2',
-                onClick: renameTab,
+                onClick: openRenameModal,
                 'data-test': 'rename-tab-menu-option',
                 label: (
                   <>
@@ -220,6 +237,24 @@ const SqlEditorTabHeader: FC<Props> = ({ queryEditor }) => {
         iconSize="m"
         iconColor={getStatusColor(queryState, theme)}
       />{' '}
+      <Modal
+        show={showRenameModal}
+        onHide={closeRenameModal}
+        title={t('Rename tab')}
+        onHandledPrimaryAction={handleRename}
+        primaryButtonName={t('Save')}
+        disablePrimaryButton={!newTabName.trim()}
+        data-test="rename-modal"
+      >
+        <Input
+          data-test="rename-modal-input"
+          type="text"
+          value={newTabName}
+          onChange={handleTabNameChange}
+          onPressEnter={handleRename}
+          autoFocus
+        />
+      </Modal>
     </TabTitleWrapper>
   );
 };
