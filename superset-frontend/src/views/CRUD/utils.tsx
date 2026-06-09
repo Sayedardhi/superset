@@ -428,7 +428,7 @@ export const CardContainer = styled.div<{
     display: grid;
     justify-content: start;
     grid-gap: ${theme.sizeUnit * 12}px ${theme.sizeUnit * 4}px;
-    grid-template-columns: repeat(auto-fit, 300px);
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     max-height: ${showThumbnails ? '314' : '148'}px;
     margin-top: ${theme.sizeUnit * -6}px;
     padding: ${
@@ -436,6 +436,11 @@ export const CardContainer = styled.div<{
         ? `${theme.sizeUnit * 8 + 3}px ${theme.sizeUnit * 20}px`
         : `${theme.sizeUnit * 8 + 1}px ${theme.sizeUnit * 20}px`
     };
+
+    @media (max-width: 576px) {
+      padding-left: ${theme.sizeUnit * 4}px;
+      padding-right: ${theme.sizeUnit * 4}px;
+    }
   `}
 `;
 
