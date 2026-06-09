@@ -36,6 +36,12 @@ const StyledCard = styled(Card)`
   ${({ theme }) => `
     overflow: hidden;
 
+    .ant-card-meta-description {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     .gradient-container {
       position: relative;
       height: 100%;
@@ -258,7 +264,11 @@ function ListViewCard({
               </div>
             </TitleContainer>
           }
-          description={description}
+          description={
+            <Tooltip title={description}>
+              <span>{description}</span>
+            </Tooltip>
+          }
           avatar={avatar || null}
         />
       )}
